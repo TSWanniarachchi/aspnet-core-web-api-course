@@ -14,3 +14,15 @@ POST {{Restaurants.API_HostAddress}}/api/weatherforecast/
 Content-Type: application/json
 
 "Sachin"
+
+
+###
+POST {{Restaurants.API_HostAddress}}/api/weatherforecast/genarate?count=-3
+Content-Type: application/json
+
+{
+  "min" : -23,
+  "max" : 23
+}
+
+###

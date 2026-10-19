@@ -2,6 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Restaurants.API.Controllers
 {
+    public class TemperatureRequest
+    {
+        public int Min { get; set; }
+        public int Max { get; set; }
+    }
+
+
     [ApiController]
     [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -38,6 +45,17 @@ namespace Restaurants.API.Controllers
         public string Hello([FromBody] string name)
         {
             return $"Hello {name}";
+        }
+
+        [HttpPost]
+        [Route("genarate")]
+        public IActionResult Genarate([FromQuery] int count, [FromBody] TemperatureRequest request)
+        {
+            if (count < 0 || request.Max < request.Min)
+                return BadRequest("Count has to be postive number, and max must be greater than the min value");
+
+            var result = _weatherForecastService.Get(count, request.Min, request.Max);
+            return Ok(result);
         }
     }
 }
