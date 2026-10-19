@@ -19,11 +19,12 @@ namespace Restaurants.API.Controllers
 
         [HttpGet]
         [Route("{take}/example")]
-        public ObjectResult Get([FromQuery] int max, [FromRoute] int take)
+        public IActionResult Get([FromQuery] int max, [FromRoute] int take)
         {
             var result = _weatherForecastService.Get();
             //Response.StatusCode = 400;
-            return StatusCode(400, result);
+            //return StatusCode(400, result);
+            return BadRequest(result);
         }
 
         [HttpGet("currentDay")]
