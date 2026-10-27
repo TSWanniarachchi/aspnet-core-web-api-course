@@ -12,5 +12,7 @@ namespace Restaurants.Domain.Entities
         public int Name { get; set; } = default!;
         public int Description { get; set; } = default!;
         public decimal Price { get; set; }
+
+        public int RestaurantId { get; set; }
     }
 }
